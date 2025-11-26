@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ServiceDesk • Soluciones de Integración y Soporte para Empresas</title>
+    <title>Services Desk • Soluciones de Integración y Soporte para las Empresas</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -546,6 +546,155 @@
             font-size: 1.5rem;
         }
 
+        /* ServiceDesk Section */
+        .servicedesk {
+            background: var(--light);
+        }
+
+        .servicedesk-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .servicedesk-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .servicedesk-text p {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .servicedesk-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .servicedesk-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .servicedesk-features li i {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            background: var(--accent);
+            color: white;
+        }
+
+        .servicedesk-visual {
+            position: relative;
+        }
+
+        .servicedesk-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--light-gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .servicedesk-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+        }
+
+        .servicedesk-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .servicedesk-stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--light-gray);
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .servicedesk-stat:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+
+        .servicedesk-stat:hover .stat-value,
+        .servicedesk-stat:hover .stat-label {
+            color: white;
+        }
+
+        .servicedesk-stat .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .servicedesk-stat .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
+        .servicedesk-support {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+
+        .support-channel {
+            text-align: center;
+            flex: 1;
+        }
+
+        .support-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--light-gray);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-size: 1.25rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .support-channel:hover .support-icon {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .support-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
         /* CTA Section */
         .cta {
             background: var(--gradient-primary);
@@ -830,7 +979,8 @@
         @media (max-width: 1024px) {
             .hero-content,
             .footer-content,
-            .integration-content {
+            .integration-content,
+            .servicedesk-content {
                 grid-template-columns: 1fr;
             }
             
@@ -878,6 +1028,15 @@
                 transform: rotate(90deg);
             }
             
+            .servicedesk-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .servicedesk-support {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
             .modal-content {
                 padding: 2rem;
                 margin: 1rem;
@@ -921,6 +1080,7 @@
                 <ul class="nav-links">
                     <li><a href="#services">Servicios</a></li>
                     <li><a href="#integration">Integración</a></li>
+                    <li><a href="#servicedesk">ServiceDesk</a></li>
                     <li><a href="#contact">Contacto</a></li>
                     <li><a href="#" class="btn btn-primary contact-btn">Contáctanos</a></li>
                 </ul>
@@ -936,8 +1096,8 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Integración <span>Microsoft & SAP</span> para Empresas</h1>
-                    <p>Especialistas en SharePoint, Power BI, automatización de procesos y extracción de datos multiplataforma. Transformamos tus sistemas en soluciones unificadas.</p>
+                    <h1>Soporte Multi Sistemas e Integración <span>SAP, Python & Microsoft 365 </span> para Empresas</h1>
+                    <p>Especialistas en Soporte Usuarios, Servidores, SharePoint, Power BI, automatización de procesos y extracción de datos multiplataforma. Transformamos tus sistemas en soluciones unificadas.</p>
                     <div class="hero-buttons">
                         <a href="#integration" class="btn btn-primary">
                             <i class="fas fa-rocket"></i>
@@ -967,11 +1127,13 @@
                         </div>
                         <div class="card-grid">
                             <div class="grid-item">SharePoint</div>
-                            <div class="grid-item">Power Apps</div>
+                            <div class="grid-item">Flujos Trabajo</div>
                             <div class="grid-item">SQL Server</div>
                             <div class="grid-item">Python</div>
-                            <div class="grid-item">Linux</div>
-                            <div class="grid-item">Azure</div>
+                            <div class="grid-item">Servidores Windowds-Linux</div>
+                            <div class="grid-item">Azure-APIs</div>
+                            <div class="grid-item">Servicios Web</div>
+                            <div class="grid-item">Fortinet</div>
                         </div>
                     </div>
                 </div>
@@ -1027,13 +1189,19 @@
                     <h3>Desarrollo Python a Medida</h3>
                     <p>APIs, integraciones, ETL, automatizaciones y microservicios para casos que requieren lógica avanzada y personalizada.</p>
                 </div>
-                
+                    <div class="service-card">
+                    <div class="service-icon">
+                       <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Fortinet System </h3>
+                    <p>Gestionamos la seguridad de tu compañia a máximo nivel, implementación firewalls Fortigate, Access Point para tu red inalámbrica y Switch para tus equipos de comunicación </p>
+                </div>
                 <div class="service-card">
                     <div class="service-icon">
                         <i class="fas fa-server"></i>
                     </div>
                     <h3>Soporte de Infraestructura</h3>
-                    <p>Administración y soporte especializado en servidores Linux y Microsoft. Seguridad, backup y recuperación de datos.</p>
+                    <p>Administración y soporte especializado en servidores Linux y Microsoft. Backup y recuperación de datos.</p>
                 </div>
             </div>
         </div>
@@ -1045,12 +1213,12 @@
             <div class="integration-content">
                 <div class="integration-text">
                     <h2>Integración Multiplataforma & Extracción de Datos</h2>
-                    <p>Conectamos sistemas dispares para crear flujos de datos unificados y automatizados. Nuestra especialidad es la integración completa entre SAP y el ecosistema Microsoft.</p>
+                    <p>Conectamos todos tus sistemas para crear flujos de datos unificados y automatizados. Nuestra especialidad es la integración completa de SAP o Softland con los ecosistemas de Microsoft 365.</p>
                     
                     <ul class="integration-features">
                         <li>
                             <i class="fas fa-check"></i>
-                            <span>Extracción directa desde módulos SAP (FI, CO, MM, SD)</span>
+                            <span>Extracción directa de los datos desde módulos SAP (FI, CO, MM, SD)</span>
                         </li>
                         <li>
                             <i class="fas fa-check"></i>
@@ -1150,6 +1318,96 @@
         </div>
     </section>
 
+    <!-- ServiceDesk Section -->
+    <section id="servicedesk" class="section servicedesk">
+        <div class="container">
+            <div class="servicedesk-content">
+                <div class="servicedesk-visual">
+                    <div class="servicedesk-card">
+                        <div class="servicedesk-stats">
+                            <div class="servicedesk-stat">
+                                <div class="stat-value">8:00 a.m - 18:00 p.m.</div>
+                                <div class="stat-label">Soporte Continuo</div>
+                            </div>
+                            <div class="servicedesk-stat">
+                                <div class="stat-value">2 Horas</div>
+                                <div class="stat-label">Tiempo Respuesta</div>
+                            </div>
+                            <div class="servicedesk-stat">
+                                <div class="stat-value">99.9%</div>
+                                <div class="stat-label">Disponibilidad</div>
+                            </div>
+                            <div class="servicedesk-stat">
+                                <div class="stat-value">5/5</div>
+                                <div class="stat-label">Satisfacción</div>
+                            </div>
+                        </div>
+                        
+                        <div class="servicedesk-support">
+                            <div class="support-channel">
+                                <div class="support-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="support-label">Llamada</div>
+                            </div>
+                            <div class="support-channel">
+                                <div class="support-icon">
+                                    <i class="fas fa-comments"></i>
+                                </div>
+                                <div class="support-label">Chat</div>
+                            </div>
+                            <div class="support-channel">
+                                <div class="support-icon">
+                                    <i class="fas fa-ticket-alt"></i>
+                                </div>
+                                <div class="support-label">Ticket</div>
+                            </div>
+                            <div class="support-channel">
+                                <div class="support-icon">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                                <div class="support-label">Remoto</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="servicedesk-text">
+                    <h2>Soporte ServiceDesk Especializado</h2>
+                    <p>Nuestro equipo de ServiceDesk proporciona soporte técnico especializado para todas las soluciones implementadas. Garantizamos la continuidad operativa y la rápida resolución de incidencias.</p>
+                    
+                    <ul class="servicedesk-features">
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Soporte multinivel (L1, L2, L3) para todos los sistemas</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Mesa de ayuda centralizada con seguimiento de tickets</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Resolución remota de incidencias en tiempo real</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Monitoreo proactivo y alertas automáticas</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>Capacitación continua para usuarios finales</span>
+                        </li>
+                    </ul>
+                    
+                    <a href="#" class="btn btn-primary contact-btn">
+                        <i class="fas fa-headset"></i>
+                        Solicitar Soporte
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="section cta">
         <div class="container">
@@ -1207,16 +1465,16 @@
                 <div class="footer-column">
                     <h3>Contacto</h3>
                     <ul class="footer-links">
-                        <li><a href="mailto:info@servicedesk.cl">info@servicedesk.cl</a></li>
+                        <li><a href="mailto:info@servicedesk.cl">contacto@servicesdesk.cl</a></li>
                         <li><a href="tel:+56212345678">+56 2 1234 5678</a></li>
-                        <li><a href="#">Santiago, Chile</a></li>
+                        <li><a href="#">Las Condes,Santiago, Chile</a></li>
                         <li><a href="#" class="contact-btn">Contáctanos</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2023 ServiceDesk • Soluciones de Integración y Soporte para Empresas. Todos los derechos reservados.</p>
+                <p>&copy; 2025 ServicesDesk • Soporte & Soluciones de Integración para Empresas. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
@@ -1230,7 +1488,7 @@
             
             <div class="form-header">
                 <h2 class="form-title">Contáctanos</h2>
-                <p class="form-subtitle">Solicita una consultoría gratuita y descubre cómo podemos optimizar tus procesos</p>
+                <p class="form-subtitle">Solicita una consultoría y descubre cómo podemos optimizar tus procesos</p>
             </div>
 
             <form id="contactForm">
@@ -1344,7 +1602,7 @@
             
             <div class="form-header">
                 <h2 class="form-title">¡Gracias por contactarnos!</h2>
-                <p class="form-subtitle">Hemos recibido tu solicitud y nos contactaremos dentro de 24 horas.</p>
+                <p class="form-subtitle">Hemos recibido tu solicitud, nos contactaremos muy pronto.</p>
             </div>
 
             <div class="text-center" style="margin-top: 2rem;">
