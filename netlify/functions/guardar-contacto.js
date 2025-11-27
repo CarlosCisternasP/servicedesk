@@ -11,15 +11,19 @@ const pool = new Pool({
 
 // Función para enviar email
 async function enviarEmail(datosContacto) {
+    console.log('📧 Iniciando envío de email...');
+    
     // Verificar que la API Key esté configurada
     if (!process.env.SENDGRID_API_KEY) {
-        console.error('❌ SENDGRID_API_KEY no configurada');
+        console.error('❌ SENDGRID_API_KEY no configurada en variables de entorno');
         return false;
+    } else {
+        console.log('✅ SENDGRID_API_KEY configurada (primeros caracteres):', process.env.SENDGRID_API_KEY.substring(0, 10) + '...');
     }
 
     const msg = {
-        to: 'carlos.cisternas.p@gmail.com', // Email donde recibirás las notificaciones
-        from: 'carlos.cisternas.p@gmail.com', // TU EMAIL VERIFICADO
+        to: 'carlos.cisternas.p@gmail.com',
+        from: 'carlos.cisternas.p@gmail.com',
         subject: `🎯 Nuevo Contacto ServiceDesk - ${datosContacto.companyName}`,
         html: `
             <!DOCTYPE html>
@@ -34,7 +38,6 @@ async function enviarEmail(datosContacto) {
                     .label { font-weight: bold; color: #1e293b; display: block; margin-bottom: 5px; font-size: 14px; }
                     .value { color: #64748b; font-size: 15px; }
                     .footer { background: #1e293b; color: white; padding: 20px; text-align: center; }
-                    .urgent { background: #fef3c7; border-left-color: #f59e0b; }
                 </style>
             </head>
             <body>
@@ -45,7 +48,7 @@ async function enviarEmail(datosContacto) {
                     </div>
                     
                     <div class="content">
-                        <div class="field urgent">
+                        <div class="field">
                             <span class="label">📋 EMPRESA</span>
                             <span class="value" style="font-size: 16px; color: #1e293b;">${datosContacto.companyName}</span>
                         </div>
@@ -73,9 +76,9 @@ async function enviarEmail(datosContacto) {
                             <span class="value">${datosContacto.currentSystem || 'No especificado'}</span>
                         </div>
                         
-                        <div class="field" style="background: #f0f9ff;">
+                        <div class="field">
                             <span class="label">🎯 NECESIDADES ESPECÍFICAS</span>
-                            <div class="value" style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                            <div class="value" style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e2e8f0;">
                                 ${datosContacto.needs.replace(/\n/g, '<br>')}
                             </div>
                         </div>
@@ -83,27 +86,17 @@ async function enviarEmail(datosContacto) {
                         ${datosContacto.additionalInfo ? `
                         <div class="field">
                             <span class="label">📝 INFORMACIÓN ADICIONAL</span>
-                            <div class="value" style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #e2e8f0;">
+                            <div class="value" style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e2e8f0;">
                                 ${datosContacto.additionalInfo.replace(/\n/g, '<br>')}
                             </div>
                         </div>
                         ` : ''}
-                        
-                        <div class="field" style="text-align: center; background: #dcfce7; border-left-color: #10b981;">
-                            <span class="label">⏰ ACCIÓN REQUERIDA</span>
-                            <span class="value" style="color: #065f46; font-weight: bold;">
-                                Contactar dentro de las próximas 24 horas
-                            </span>
-                        </div>
                     </div>
                     
                     <div class="footer">
                         <p style="margin: 0; font-size: 14px;">
                             <strong>ServiceDesk</strong> • Soluciones de Integración y Soporte para Empresas<br>
-                            📧 carlos.cisternas.p@gmail.com • 📞 +56 2 1234 5678
-                        </p>
-                        <p style="margin: 10px 0 0 0; font-size: 12px; opacity: 0.8;">
-                            Este email fue generado automáticamente desde el formulario de contacto
+                            📧 carlos.cisternas.p@gmail.com
                         </p>
                     </div>
                 </div>
@@ -113,16 +106,33 @@ async function enviarEmail(datosContacto) {
     };
 
     try {
-        await sgMail.send(msg);
-        console.log('✅ Email enviado exitosamente a:', msg.to);
+        console.log('🔄 Enviando email a:', msg.to);
+        console.log('📨 Asunto:', msg.subject);
+        
+        const result = await sgMail.send(msg);
+        console.log('✅ Email enviado exitosamente. Status:', result[0].statusCode);
+        console.log('📨 Response headers:', JSON.stringify(result[0].headers, null, 2));
+        
         return true;
     } catch (error) {
-        console.error('❌ Error enviando email:', error.response?.body || error.message);
+        console.error('❌ ERROR enviando email:');
+        console.error('Código:', error.code);
+        console.error('Mensaje:', error.message);
+        
+        if (error.response) {
+            console.error('Response body:', error.response.body);
+            console.error('Response headers:', error.response.headers);
+        }
+        
         return false;
     }
 }
 
 exports.handler = async (event, context) => {
+    console.log('🚀 Función guardar-contacto ejecutándose...');
+    console.log('📝 Método HTTP:', event.httpMethod);
+    console.log('🔧 Variables de entorno disponibles:', Object.keys(process.env).filter(key => key.includes('SENDGRID')));
+
     // Configurar CORS
     const headers = {
         'Access-Control-Allow-Origin': '*',
@@ -132,6 +142,7 @@ exports.handler = async (event, context) => {
 
     // Manejar preflight OPTIONS request
     if (event.httpMethod === 'OPTIONS') {
+        console.log('🔄 Respondiendo a preflight OPTIONS');
         return {
             statusCode: 200,
             headers,
@@ -141,6 +152,7 @@ exports.handler = async (event, context) => {
 
     // Solo permitir POST
     if (event.httpMethod !== 'POST') {
+        console.log('❌ Método no permitido:', event.httpMethod);
         return {
             statusCode: 405,
             headers,
@@ -150,6 +162,7 @@ exports.handler = async (event, context) => {
 
     try {
         const data = JSON.parse(event.body);
+        console.log('📨 Datos recibidos:', JSON.stringify(data, null, 2));
         
         const {
             companyName,
@@ -166,6 +179,7 @@ exports.handler = async (event, context) => {
 
         // Validar campos requeridos
         if (!companyName || !companyRut || !employeeCount || !industry || !contactName || !contactPhone || !contactEmail || !needs) {
+            console.log('❌ Validación fallida - campos faltantes');
             return {
                 statusCode: 400,
                 headers,
@@ -198,6 +212,7 @@ exports.handler = async (event, context) => {
             additionalInfo || null
         ];
 
+        console.log('💾 Guardando en BD...');
         const result = await pool.query(query, values);
         const contactoId = result.rows[0].id;
         const fechaCreacion = result.rows[0].fecha_creacion;
@@ -219,20 +234,18 @@ exports.handler = async (event, context) => {
             fecha: new Date().toLocaleString('es-CL')
         };
 
-        // 3. Enviar email (en segundo plano)
-        enviarEmail(datosContacto)
-            .then(success => {
-                if (success) {
-                    console.log('✅ Notificación por email enviada correctamente');
-                } else {
-                    console.log('⚠️ Email no pudo ser enviado, pero el contacto fue guardado en BD');
-                }
-            })
-            .catch(emailError => {
-                console.error('❌ Error en el proceso de email:', emailError);
-            });
+        console.log('📧 Preparando para enviar email...');
 
-        // Responder inmediatamente al usuario
+        // 3. Enviar email y ESPERAR a que termine
+        const emailEnviado = await enviarEmail(datosContacto);
+        
+        if (emailEnviado) {
+            console.log('🎉 Proceso completo: BD guardada + Email enviado');
+        } else {
+            console.log('⚠️ Proceso parcial: BD guardada pero Email falló');
+        }
+
+        // Responder al usuario
         return {
             statusCode: 200,
             headers,
@@ -240,19 +253,21 @@ exports.handler = async (event, context) => {
                 success: true, 
                 message: '¡Gracias por contactarnos! Hemos recibido tu información y te contactaremos dentro de 24 horas.',
                 id: contactoId,
+                emailEnviado: emailEnviado,
                 timestamp: new Date().toISOString()
             })
         };
 
     } catch (error) {
-        console.error('❌ Error al procesar contacto:', error);
+        console.error('❌ Error general al procesar contacto:');
+        console.error('Stack:', error.stack);
         
         return {
             statusCode: 500,
             headers,
             body: JSON.stringify({ 
-                error: 'Error interno del servidor al procesar tu solicitud',
-                details: process.env.NODE_ENV === 'development' ? error.message : 'Por favor, intenta nuevamente más tarde.'
+                error: 'Error interno del servidor',
+                details: error.message
             })
         };
     }
