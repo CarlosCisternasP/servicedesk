@@ -696,6 +696,212 @@
             font-weight: 600;
         }
 
+        /* Plans Section */
+        .plans {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .plan-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--light-gray);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .plan-card.featured {
+            border: 2px solid var(--primary);
+            transform: scale(1.05);
+        }
+
+        .plan-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .plan-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .plan-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-gray);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .plan-card:hover .plan-icon {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .plan-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-subtitle {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .plan-price {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .price-amount {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .price-period {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .plan-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .plan-features li i {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            background: var(--accent);
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .plan-actions {
+            text-align: center;
+        }
+
+        .plans-tables {
+            margin-bottom: 4rem;
+        }
+
+        .plans-table {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 3rem;
+        }
+
+        .table-header {
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1.5rem 2rem;
+        }
+
+        .table-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .table-subtitle {
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .table-content {
+            padding: 0;
+        }
+
+        .table-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 2fr 1fr;
+            padding: 1.25rem 2rem;
+            border-bottom: 1px solid var(--light-gray);
+            align-items: center;
+        }
+
+        .table-row:last-child {
+            border-bottom: none;
+        }
+
+        .table-row.header {
+            background: var(--light-gray);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .table-cell {
+            padding: 0.5rem;
+        }
+
+        .commercial-text {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+        }
+
+        .commercial-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .commercial-text p {
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
         /* CTA Section */
         .cta {
             background: var(--gradient-primary);
@@ -988,6 +1194,14 @@
             .hero-text h1 {
                 font-size: 3rem;
             }
+            
+            .plan-card.featured {
+                transform: scale(1);
+            }
+            
+            .plan-card.featured:hover {
+                transform: scale(1) translateY(-10px);
+            }
         }
 
         @media (max-width: 768px) {
@@ -1046,6 +1260,24 @@
             .form-row {
                 grid-template-columns: 1fr;
             }
+            
+            .table-row {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+                text-align: center;
+            }
+            
+            .table-row.header {
+                display: none;
+            }
+            
+            .table-cell::before {
+                content: attr(data-label);
+                font-weight: 600;
+                display: block;
+                margin-bottom: 0.5rem;
+                color: var(--primary);
+            }
         }
 
         @media (max-width: 480px) {
@@ -1063,6 +1295,10 @@
             
             .form-title {
                 font-size: 2rem;
+            }
+            
+            .plans-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -1082,6 +1318,7 @@
                     <li><a href="#services">Servicios</a></li>
                     <li><a href="#integration">Integración</a></li>
                     <li><a href="#servicedesk">ServicesDesk</a></li>
+                    <li><a href="#plans">Planes</a></li>
                     <li><a href="#contact">Contacto</a></li>
                     <li><a href="#" class="btn btn-primary contact-btn">Contáctanos</a></li>
                 </ul>
@@ -1127,7 +1364,7 @@
                             </div>
                         </div>
                         <div class="card-grid">
-                   <div class="grid-item">SharePoint Online</div>
+                            <div class="grid-item">SharePoint Online</div>
                             <div class="grid-item">Flujos Trabajo</div>
                             <div class="grid-item">SQL Server</div>
                             <div class="grid-item">Python</div>
@@ -1171,7 +1408,7 @@
                     <div class="service-icon">
                         <i class="fas fa-chart-bar"></i>
                     </div>
-                   <h3>Análisis E Integración de Datos</h3>
+                    <h3>Análisis E Integración de Datos</h3>
                     <p>Desarrollo de dashboards interactivos, reportes avanzados y análisis predictivo de sus datos para toma de decisiones basada en su información estática o dinámica.</p>
                 </div>
                 
@@ -1191,12 +1428,12 @@
                     <p>APIs, integraciones, ETL, automatizaciones y microservicios para casos que requieren lógica avanzada y personalizada.</p>
                 </div>
                 
-                 <div class="service-card">
+                <div class="service-card">
                     <div class="service-icon">
-                       <i class="fas fa-chart-bar"></i>
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>Fortinet System </h3>
-                    <p>Gestionamos la seguridad de tu compañia a máximo nivel, implementación firewalls Fortigate, Access Point para tu red inalámbrica y Switch para tus equipos de comunicación </p>
+                    <h3>Fortinet System</h3>
+                    <p>Gestionamos la seguridad de tu compañia a máximo nivel, implementación firewalls Fortigate, Access Point para tu red inalámbrica y Switch para tus equipos de comunicación.</p>
                 </div>
                 
                 <div class="service-card">
@@ -1218,7 +1455,7 @@
                     <h2>Integración Multiplataforma & Extracción de Datos</h2>
                     <p>Conectamos todos tus sistemas para crear flujos de datos unificados y automatizados. Nuestra especialidad es la integración completa de SAP o Softland con los ecosistemas de Microsoft 365.</p>
                     
-            <ul class="integration-features">
+                    <ul class="integration-features">
                         <li>
                             <i class="fas fa-check"></i>
                             <span>Extracción directa de los datos desde módulos SAP (FI, CO, MM, SD)</span>
@@ -1329,7 +1566,7 @@
                     <div class="servicedesk-card">
                         <div class="servicedesk-stats">
                             <div class="servicedesk-stat">
-                                <div class="stat-value">8:00 a.m.  18:00 p.m.</div>
+                                <div class="stat-value">8:00 a.m. - 18:00 p.m.</div>
                                 <div class="stat-label">Soporte Continuo</div>
                             </div>
                             <div class="servicedesk-stat">
@@ -1411,6 +1648,164 @@
         </div>
     </section>
 
+    <!-- Plans Section -->
+    <section id="plans" class="section plans">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Planes de Contratación</h2>
+                <p class="section-subtitle mx-auto">Soluciones de soporte técnico adaptadas a las necesidades de tu empresa</p>
+            </div>
+            
+            <!-- Planes de Soporte Remoto -->
+            <div class="plans-tables">
+                <div class="plans-table">
+                    <div class="table-header">
+                        <div class="table-title">💻 Planes de Soporte Remoto</div>
+                        <div class="table-subtitle">Lunes a Viernes — 08:00 a 18:00</div>
+                    </div>
+                    <div class="table-content">
+                        <div class="table-row header">
+                            <div class="table-cell" data-label="Plan">Plan Remoto</div>
+                            <div class="table-cell" data-label="Horas">Horas Mensuales Incluidas</div>
+                            <div class="table-cell" data-label="Descripción">Descripción técnica</div>
+                            <div class="table-cell" data-label="Precio">Precio Neto (USD)</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Plan">Remote Basic</div>
+                            <div class="table-cell" data-label="Horas">8 horas/mes</div>
+                            <div class="table-cell" data-label="Descripción">Soporte preventivo y correctivo</div>
+                            <div class="table-cell" data-label="Precio">$299</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Plan">Remote Standard</div>
+                            <div class="table-cell" data-label="Horas">12 horas/mes</div>
+                            <div class="table-cell" data-label="Descripción">Prioridad operativa y resolución avanzada</div>
+                            <div class="table-cell" data-label="Precio">$399</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Plan">Remote Professional</div>
+                            <div class="table-cell" data-label="Horas">16 horas/mes</div>
+                            <div class="table-cell" data-label="Descripción">Redes, seguridad y Microsoft 365</div>
+                            <div class="table-cell" data-label="Precio">$499</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Plan">Remote Enterprise</div>
+                            <div class="table-cell" data-label="Horas">20 horas/mes</div>
+                            <div class="table-cell" data-label="Descripción">Gestión TI integral y continuidad operativa</div>
+                            <div class="table-cell" data-label="Precio">$599</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Plan">Remote Full Premium</div>
+                            <div class="table-cell" data-label="Horas">Horas ilimitadas</div>
+                            <div class="table-cell" data-label="Descripción">SLA crítico y atención prioritaria</div>
+                            <div class="table-cell" data-label="Precio">$899</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Planes Presenciales -->
+                <div class="plans-table">
+                    <div class="table-header">
+                        <div class="table-title">🧑‍🔧 Planes Presenciales</div>
+                        <div class="table-subtitle">Región Metropolitana / Región de Valparaíso — visitas programadas</div>
+                    </div>
+                    <div class="table-content">
+                        <div class="table-row header">
+                            <div class="table-cell" data-label="Plan">Plan Presencial</div>
+                            <div class="table-cell" data-label="Eventos">Eventos Mensuales</div>
+                            <div class="table-cell" data-label="Alcance">Alcance técnico</div>
+                            <div class="table-cell" data-label="Precio">Precio Neto (USD)</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Plan">OnSite Basic</div>
+                            <div class="table-cell" data-label="Eventos">2 eventos</div>
+                            <div class="table-cell" data-label="Alcance">Instalación, diagnóstico y soporte esencial</div>
+                            <div class="table-cell" data-label="Precio">$169</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Plan">OnSite Standard</div>
+                            <div class="table-cell" data-label="Eventos">3 eventos</div>
+                            <div class="table-cell" data-label="Alcance">Incidencias operativas recurrentes</div>
+                            <div class="table-cell" data-label="Precio">$269</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Plan">OnSite Professional</div>
+                            <div class="table-cell" data-label="Eventos">4 eventos</div>
+                            <div class="table-cell" data-label="Alcance">Redes y continuidad operativa</div>
+                            <div class="table-cell" data-label="Precio">$359</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Plan">OnSite Enterprise</div>
+                            <div class="table-cell" data-label="Eventos">6 eventos</div>
+                            <div class="table-cell" data-label="Alcance">Infraestructura y atención prioritaria</div>
+                            <div class="table-cell" data-label="Precio">$649</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Plan">OnSite Full Premium</div>
+                            <div class="table-cell" data-label="Eventos">10 eventos</div>
+                            <div class="table-cell" data-label="Alcance">Intervenciones avanzadas y criticidad alta</div>
+                            <div class="table-cell" data-label="Precio">$829</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Combos Comerciales -->
+                <div class="plans-table">
+                    <div class="table-header">
+                        <div class="table-title">🚀 Combos Comerciales Propuestos</div>
+                        <div class="table-subtitle">Soluciones integrales para máxima eficiencia</div>
+                    </div>
+                    <div class="table-content">
+                        <div class="table-row header">
+                            <div class="table-cell" data-label="Combo">Combo</div>
+                            <div class="table-cell" data-label="Incluye">Incluye</div>
+                            <div class="table-cell" data-label="Precio">Precio Neto (USD)</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Combo">Pyme Operativa</div>
+                            <div class="table-cell" data-label="Incluye">Remote Basic + OnSite Basic</div>
+                            <div class="table-cell" data-label="Precio">$468</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Combo">Business Support</div>
+                            <div class="table-cell" data-label="Incluye">Remote Standard + OnSite Standard</div>
+                            <div class="table-cell" data-label="Precio">$668</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Combo">Professional Continuity</div>
+                            <div class="table-cell" data-label="Incluye">Remote Professional + OnSite Professional</div>
+                            <div class="table-cell" data-label="Precio">$858</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Combo">Enterprise Total</div>
+                            <div class="table-cell" data-label="Incluye">Remote Enterprise + OnSite Enterprise</div>
+                            <div class="table-cell" data-label="Precio">$1,248</div>
+                        </div>
+                        <div class="table-row">
+                            <div class="table-cell" data-label="Combo">Operación Crítica 24/7</div>
+                            <div class="table-cell" data-label="Incluye">Remote Full Premium + Full Premium OnSite</div>
+                            <div class="table-cell" data-label="Precio">$1,728</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Enfoque comercial técnico -->
+            <div class="commercial-text">
+                <h3>🎤 Enfoque comercial técnico</h3>
+                <p>Planes profesionales de soporte informático corporativo orientados a continuidad operativa, respuesta experta y eficiencia operacional. Disponibles en modalidad remota y presencial programada.</p>
+                <p>Nuestros servicios están diseñados para garantizar la máxima disponibilidad de sus sistemas, con tiempos de respuesta optimizados y soluciones técnicas especializadas para cada nivel de necesidad empresarial.</p>
+            </div>
+            
+            <div class="text-center" style="margin-top: 3rem;">
+                <a href="#" class="btn btn-primary contact-btn">
+                    <i class="fas fa-calendar-alt"></i>
+                    Solicitar Cotización
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA Section -->
     <section class="section cta">
         <div class="container">
@@ -1436,7 +1831,7 @@
                         </div>
                         ServiceDesk
                     </a>
-                  <p>Especialistas en integración de Plataforma Microsoft SharePoint 365, BI & SAP ERP. Transformamos procesos empresariales mediante integración de datos multiplataformas y automatización a través de flujos de trabajo.</p>
+                    <p>Especialistas en integración de Plataforma Microsoft SharePoint 365, BI & SAP ERP. Transformamos procesos empresariales mediante integración de datos multiplataformas y automatización a través de flujos de trabajo.</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1466,7 +1861,7 @@
                 </div>
                 
                 <div class="footer-column">
-                       <h3>Contacto</h3>
+                    <h3>Contacto</h3>
                     <ul class="footer-links">
                         <li><a href="mailto:contacto@servicesdesk.cl">contacto@servicesdesk.cl</a></li>
                         <li><a href="tel:+569 ">+56 9</a></li>
@@ -1871,4 +2266,3 @@
     </script>
 </body>
 </html>
-
