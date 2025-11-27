@@ -1,13 +1,34 @@
 const { Pool } = require('pg');
 
+// Configuración de conexión a Neon
 const pool = new Pool({
     connectionString: 'postgresql://neondb_owner:npg_Snm3hiBt7PJO@ep-restless-breeze-aekn5pt7-pooler.c-2.us-east-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require'
 });
 
 exports.handler = async (event, context) => {
+    // Configurar CORS
+    const headers = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS'
+    };
+
+    // Manejar preflight OPTIONS request
+    if (event.httpMethod === 'OPTIONS') {
+        return {
+            statusCode: 200,
+            headers,
+            body: ''
+        };
+    }
+
     // Solo permitir POST
     if (event.httpMethod !== 'POST') {
-        return { statusCode: 405, body: 'Method Not Allowed' };
+        return {
+            statusCode: 405,
+            headers,
+            body: JSON.stringify({ error: 'Método no permitido' })
+        };
     }
 
     try {
@@ -30,6 +51,7 @@ exports.handler = async (event, context) => {
         if (!companyName || !companyRut || !employeeCount || !industry || !contactName || !contactPhone || !contactEmail || !needs) {
             return {
                 statusCode: 400,
+                headers,
                 body: JSON.stringify({ error: 'Todos los campos obligatorios deben ser completados' })
             };
         }
@@ -52,15 +74,18 @@ exports.handler = async (event, context) => {
             contactName,
             contactPhone,
             contactEmail,
-            currentSystem,
+            currentSystem || null,
             needs,
-            additionalInfo
+            additionalInfo || null
         ];
 
         const result = await pool.query(query, values);
 
+        console.log('✅ Contacto guardado en BD. ID:', result.rows[0].id);
+
         return {
             statusCode: 200,
+            headers,
             body: JSON.stringify({ 
                 success: true, 
                 message: 'Contacto guardado exitosamente',
@@ -69,10 +94,15 @@ exports.handler = async (event, context) => {
         };
 
     } catch (error) {
-        console.error('Error:', error);
+        console.error('❌ Error al guardar contacto:', error);
+        
         return {
             statusCode: 500,
-            body: JSON.stringify({ error: 'Error interno del servidor' })
+            headers,
+            body: JSON.stringify({ 
+                error: 'Error interno del servidor al guardar el contacto',
+                details: error.message 
+            })
         };
     }
 };
