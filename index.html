@@ -1795,7 +1795,7 @@
                 };
 
                 // Enviar datos al servidor
-                const response = await fetch('/api/contact', {
+                const response = await fetch('/.netlify/functions/guardar-contacto', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -1871,3 +1871,4 @@
     </script>
 </body>
 </html>
+
