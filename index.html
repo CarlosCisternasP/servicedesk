@@ -217,12 +217,15 @@
         }
 
         /* Hero Section */
-        .hero {
-            padding: 180px 0 120px;
-            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-            position: relative;
-            overflow: hidden;
-        }
+   .hero-content {
+    margin-top: 40px; /* Agrega esta línea */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
 
         .hero::before {
             content: '';
@@ -2261,5 +2264,6 @@
     </script>
 </body>
 </html>
+
 
 
