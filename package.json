@@ -1,7 +1,18 @@
 {
-  "name": "servicedesk-netlify",
+  "name": "servicesdesk-netlify",
   "version": "1.0.0",
+  "description": "ServiceDesk - Soluciones de Integración y Soporte para Empresas",
+  "main": "index.html",
+  "scripts": {
+    "build": "echo 'Build completo'"
+  },
   "dependencies": {
     "pg": "^8.11.3"
-  }
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["servicedesk", "netlify", "postgresql", "neon"],
+  "author": "ServiceDesk",
+  "license": "MIT"
 }
