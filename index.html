@@ -164,16 +164,16 @@
             text-decoration: none;
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient-primary);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.25rem;
+        .logo-img {
+            width: 100px; /* Aumentado de 40px a 60px */
+            height: 100px; /* Aumentado de 40px a 60px */
+            border-radius: 14px; /* Aumentado de 10px a 12px */
+            object-fit: contain;
+            transition: var(--transition);
+        }
+
+        .logo:hover .logo-img {
+            transform: scale(1.05);
         }
 
         .nav-links {
@@ -1309,9 +1309,7 @@
         <div class="container">
             <nav class="navbar">
                 <a href="#" class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
+                    <img src="https://github.com/CarlosCisternasP/servicedesk/blob/main/images/Logo.png?raw=true" alt="ServiceDesk Logo" class="logo-img">
                     ServiceDesk
                 </a>
                 <ul class="nav-links">
@@ -1826,9 +1824,7 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <a href="#" class="logo" style="color: white; margin-bottom: 1rem; display: inline-block;">
-                        <div class="logo-icon">
-                            <i class="fas fa-server"></i>
-                        </div>
+                        <img src="https://github.com/CarlosCisternasP/servicedesk/blob/main/images/Logo.png?raw=true" alt="ServiceDesk Logo" class="logo-img">
                         ServiceDesk
                     </a>
                     <p>Especialistas en integración de Plataforma Microsoft SharePoint 365, BI & SAP ERP. Transformamos procesos empresariales mediante integración de datos multiplataformas y automatización a través de flujos de trabajo.</p>
