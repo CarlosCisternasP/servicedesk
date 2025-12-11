@@ -154,6 +154,7 @@
             padding: 1.5rem 0;
         }
 
+        /* Logo styles - CORREGIDO */
         .logo {
             display: flex;
             align-items: center;
@@ -165,9 +166,9 @@
         }
 
         .logo-img {
-            width: 60px; /* Aumentado de 40px a 60px */
-            height: 60px; /* Aumentado de 40px a 60px */
-            border-radius: 12px; /* Aumentado de 10px a 12px */
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
             object-fit: contain;
             transition: var(--transition);
         }
@@ -1718,13 +1719,13 @@
                             <div class="table-cell" data-label="Plan">OnSite Basic</div>
                             <div class="table-cell" data-label="Eventos">2 eventos</div>
                             <div class="table-cell" data-label="Alcance">Instalación, diagnóstico y soporte esencial</div>
-                            <div class="table-cell" data-label="Precio">$269</div>
+                            <div class="table-cell" data-label="Precio">$259</div>
                         </div>
                         <div class="table-row">
                             <div class="table-cell" data-label="Plan">OnSite Standard</div>
                             <div class="table-cell" data-label="Eventos">3 eventos</div>
                             <div class="table-cell" data-label="Alcance">Incidencias operativas recurrentes</div>
-                            <div class="table-cell" data-label="Precio">$369</div>
+                            <div class="table-cell" data-label="Precio">$359</div>
                         </div>
                         <div class="table-row">
                             <div class="table-cell" data-label="Plan">OnSite Professional</div>
@@ -1823,7 +1824,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <a href="#" class="logo" style="color: white; margin-bottom: 1rem; display: inline-block;">
+                    <a href="#" class="logo" style="color: white; margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 12px;">
                         <img src="https://github.com/CarlosCisternasP/servicedesk/blob/main/images/Logo.png?raw=true" alt="ServiceDesk Logo" class="logo-img">
                         ServiceDesk
                     </a>
@@ -2262,4 +2263,3 @@
     </script>
 </body>
 </html>
-
