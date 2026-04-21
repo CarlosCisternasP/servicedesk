@@ -1,7 +1,7 @@
 {
   "name": "servicesdesk-netlify",
   "version": "1.0.0",
-  "description": "ServiceDesk - Soluciones de Integración y Soporte para Empresas",
+  "description": "ServicesDesk - Soluciones de Integración y Soporte para Empresas",
   "main": "index.html",
   "scripts": {
     "build": "echo 'Build completo'"
@@ -13,7 +13,7 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "keywords": ["servicedesk", "netlify", "postgresql", "neon", "sendgrid"],
-  "author": "ServiceDesk",
+  "keywords": ["servicesdesk", "netlify", "postgresql", "neon", "sendgrid"],
+  "author": "ServicesDesk",
   "license": "MIT"
 }
